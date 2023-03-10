@@ -1,31 +1,3 @@
-In this project there is computation on big numbers (thousands of digits).
-
-Requirements:
-
-1.Addition of two numbers
-
-2.Subtraction of two numbers
-
-3.Computation on big numbers
-
-4.Account for a negative array size and return error
-
-5.Account for non-integers and return error
-
-Unit Tests:
-
-1.(Line 90) Tests addition function of two arrays
-
-2.(Line 91) Tests subtraction function of two arrays
-
-3.(Line 93) Tests addition function of two arrays
-
-4.(Line 94) Tests subtraction function of two arrays
-
-5.(Line 22 and 43) Tests to make sure the array size is 0 or greater, requests to retry if an error occurs
-
-6.(Line 63 and 79) Tests to make sure all inputs are of type int, requests to retry if an error occurs
-
 How to run file:
 
 1.Nothing needs to be modified, just run the code
