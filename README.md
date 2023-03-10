@@ -37,6 +37,9 @@ How to run file:
 4.If both arrays have been assigned correctly, the functions will run in the order of:
 
 addSet(array 1, array 2) array 1 + array 2
+
 subSet(array 1, array 2) array 1 - array 2
+
 addSet(array 2, array 1) array 2 + array 1
+
 subSet(array 2, array 1) array 2 - array 1
