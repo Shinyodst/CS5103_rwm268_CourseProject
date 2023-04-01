@@ -1,135 +1,65 @@
 #include<iostream>
+#include<string>
 using std::cout;
 using std::endl;
 using std::cin;
+using std::string;
+using std::to_string;
 
-void addSet(int*,int*,int,int);
-void subSet(int*,int*,int,int);
+int addDigits(int,int);
+int subDigits(int,int);
+string digitToString(int);
+int addSet(int);
+int subSet(int);
 
 int main()
 {	
-	int flag = 0;
-	int size1;
-	int size2;
-	int temp;
+	int x = 25532;
+	int y = 915322;
 
-	do
-	{
-		temp = -1;
-		cout << "How many numbers exist for the first set?" << endl;
-		cout << endl;
-		cin >> temp;
-		if(temp < 0)
-		{
-			cout << "Error, amount has to be a positive value" << endl;
-			cout << endl;
-			flag = 1;
-		}
-		else
-		{
-			size1 = temp;
-			flag = 0;
-		}
-	}while(flag == 1);
+	int a = addDigits(x,y);
+	cout << "The addition of " << x << " & " << y << " is: " << a << endl;
 
-	int set1[size1];
+	int b = addDigits(y,x);
+	cout << "The addition of " << y << " & " << x << " is: " << b << endl;
 
-	do
-	{
-		temp = -1;
-		cout << "How many numbers exist for the second set?" << endl;
-		cout << endl;
-		cin >> temp;
-		if(temp < 0)
-		{
-			cout << "Error, amount has to be a positive value" << endl;
-			cout << endl;
-			flag = 1;
-		}
-		else
-		{
-			size2 = temp;
-			flag = 0;
-		}
-	}while(flag == 1);
+	int c = subDigits(x,y);
+	cout << "The subtraction of " << x << " & " << y << " is: " << c << endl;
 
-	int set2[size2];
+	int d = subDigits(y,x);
+	cout << "The subtraction of " << y << " & " << x << " is: " << d << endl;
 
-	for(int i = 0; i < size1; i++)
-	{
-		int temp;
-		cout << "Value #" << (i+1) << " is: ";
-		cin >> temp;
-		if(!cin)
-		{
-			cin.clear(); // reset failbit
-    		cin.ignore(1000, '\n'); //skip bad input
-			cout << "Error, not a number, please retry" << endl;
-			i--;
-		}
-		else
-			set1[i] = temp;
-	}
-
-	for(int i = 0; i < size2; i++)
-	{
-		int temp;
-		cout << "Value #" << (i+1) << " is: ";
-		cin >> temp;
-		if(!cin)
-		{
-			cin.clear(); // reset failbit
-    		cin.ignore(1000, '\n'); //skip bad input
-			cout << "Error, not a number, please retry" << endl;
-			i--;
-		}
-		else
-			set2[i] = temp;
-	}
-
-	addSet(set1,set2,size1,size2); //test case 1, add set 2 to set 1
-	subSet(set1,set2,size1,size2); //test case 2, subtract set 2 from set 1
-
-	addSet(set2,set1,size2,size1); //test case 3, add set 1 to set 2
-	subSet(set2,set1,size2,size1); //test case 4, subtract set 1 from set 2
+	string formalDigits = digitToString(a);
+	cout << formalDigits << endl;
+	
 }
 
-void addSet(int* seta, int* setb, int size1, int size2)
+int addDigits(int val1, int val2)
 {
-	int value1 = 0;
-	int value2 = 0;
-	int finalvalue = 0;
-
-	for(int i = 0; i < size1; ++i)
-	{
-		value1 = value1 + seta[i];
-	}
-
-	for(int i = 0; i < size2; ++i)
-	{
-		value2 = value2 + setb[i];
-	}
-
-	finalvalue = value1 + value2;
-	cout << "The addition of these two sets is: " << finalvalue << endl;
+	int finalvalue;
+	finalvalue = val1 + val2;
+	return finalvalue;
 }
 
-void subSet(int* seta, int* setb, int size1, int size2)
+int subDigits(int val1, int val2)
 {
-	int value1 = 0;
-	int value2 = 0;
-	int finalvalue = 0;
-
-	for(int i = 0; i < size1; ++i)
-	{
-		value1 = value1 + seta[i];
-	}
-
-	for(int i = 0; i < size2; ++i)
-	{
-		value2 = value2 + setb[i];
-	}
-
-	finalvalue = value1 - value2;
-	cout << "The subtraction of these two sets is: " << finalvalue << endl;
+	int finalvalue;
+	finalvalue = val1 - val2;
+	return finalvalue;
 }
+
+string digitToString(int val)
+{
+	string converted = to_string(val);
+	return converted;
+}
+
+//int addSet(int size)
+//{
+
+//}
+
+//int subSet(int size)
+//{
+
+//}
