@@ -1,57 +1,77 @@
 #include<iostream>
 #include<string>
+#include <bits/stdc++.h>
 using std::cout;
 using std::endl;
 using std::cin;
 using std::string;
 using std::to_string;
 
-int addDigits(int,int);
-int subDigits(int,int);
-string digitToString(int);
-int addSet(int);
-int subSet(int);
+long addDigits(long,long);
+long subDigits(long,long);
+string digitToString(long);
+//int addSet(int);
+//int subSet(int);
 
 int main()
 {	
-	int x = 25532;
-	int y = 915322;
+	long x = 100090962;
+	long y = 3354322;
 
-	int a = addDigits(x,y);
+	long a = addDigits(x,y);
 	cout << "The addition of " << x << " & " << y << " is: " << a << endl;
 
-	int b = addDigits(y,x);
+	long b = addDigits(y,x);
 	cout << "The addition of " << y << " & " << x << " is: " << b << endl;
 
-	int c = subDigits(x,y);
+	long c = subDigits(x,y);
 	cout << "The subtraction of " << x << " & " << y << " is: " << c << endl;
 
-	int d = subDigits(y,x);
+	long d = subDigits(y,x);
 	cout << "The subtraction of " << y << " & " << x << " is: " << d << endl;
 
 	string formalDigits = digitToString(a);
 	cout << formalDigits << endl;
-	
 }
 
-int addDigits(int val1, int val2)
+long addDigits(long val1, long val2)
 {
 	int finalvalue;
 	finalvalue = val1 + val2;
 	return finalvalue;
 }
 
-int subDigits(int val1, int val2)
+long subDigits(long val1, long val2)
 {
 	int finalvalue;
 	finalvalue = val1 - val2;
 	return finalvalue;
 }
 
-string digitToString(int val)
+string digitToString(long val)
 {
 	string converted = to_string(val);
-	return converted;
+	int size = converted.size();
+	reverse(converted.begin(),converted.end());
+	string temp;
+	int flag = 0;
+
+	for(int i = 0; i < size; ++i)
+	{
+		if(flag == 3)
+		{
+			temp += ',';
+			--i;
+			flag = 0;
+		}
+		else
+		{
+			temp += converted[i];
+			++flag;
+		}
+	}
+	reverse(temp.begin(),temp.end());
+	return temp;
 }
 
 //int addSet(int size)
