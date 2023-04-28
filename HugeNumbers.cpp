@@ -6,78 +6,77 @@ using std::endl;
 using std::cin;
 using std::string;
 using std::to_string;
+using std::stol;
 
 long addDigits(long,long);
 long subDigits(long,long);
 string digitToString(long);
-//int addSet(int);
-//int subSet(int);
+string addDecimalPosition(string,int);
+string addStrings(string,string);
+string subStrings(string,string);
+bool compareStrings(string,string);
 
 int main()
 {	
 	long x = 300;
 	long y = 720;
-	long z = -500;
 
 	long a = addDigits(x,y);
-	cout << "The addition of " << x << " & " << y << " is: " << a << endl;
+	cout << "The addition of " << x << " & " << y << " is: " << a << endl << endl;;
 
-	long aa = addDigits(x,z);
-	cout << "The addition of " << x << " & " << z << " is: " << aa << endl;
+	string formalDigits = digitToString(a); // outputs 1,020
+	cout << formalDigits << endl << endl;
 
-	long b = addDigits(y,x);
-	cout << "The addition of " << y << " & " << x << " is: " << b << endl;
-
-	long bb = addDigits(z,x);
-	cout << "The addition of " << z << " & " << x << " is: " << bb << endl;
-
-	long c = subDigits(x,y);
-	cout << "The subtraction of " << x << " & " << y << " is: " << c << endl;
-
-	long cc = subDigits(x,z);
-	cout << "The subtraction of " << x << " & " << z << " is: " << cc << endl;
-
-	long d = subDigits(y,x);
-	cout << "The subtraction of " << y << " & " << x << " is: " << d << endl;
-
-	long dd = subDigits(z,x);
-	cout << "The subtraction of " << z << " & " << x << " is: " << dd << endl;
-
-	string formalDigits = digitToString(a);
+	formalDigits = addDecimalPosition(formalDigits,0); // outputs .1020
 	cout << formalDigits << endl;
 
-	string formalDigits1 = digitToString(aa);
-	cout << formalDigits1 << endl;
+	formalDigits = digitToString(a);
+	formalDigits = addDecimalPosition(formalDigits,1); // outputs 1.020
+	cout << formalDigits << endl;
 
-	string formalDigits2 = digitToString(b);
-	cout << formalDigits2 << endl;
+	formalDigits = digitToString(a);
+	formalDigits = addDecimalPosition(formalDigits,2); // outputs 10.20
+	cout << formalDigits << endl;
 
-	string formalDigits3 = digitToString(bb);
-	cout << formalDigits3 << endl;
+	formalDigits = digitToString(a);
+	formalDigits = addDecimalPosition(formalDigits,3); // outputs 102.0
+	cout << formalDigits << endl;
 
-	string formalDigits4 = digitToString(c);
-	cout << formalDigits4 << endl;
+	formalDigits = digitToString(a);
+	formalDigits = addDecimalPosition(formalDigits,4); // outputs 1020.
+	cout << formalDigits << endl << endl;
 
-	string formalDigits5 = digitToString(cc);
-	cout << formalDigits5 << endl;
+	string testingAddition = "150.72";
+	formalDigits = digitToString(a);
+	formalDigits = addDecimalPosition(formalDigits,2); // changed formalDigits to 10.20
 
-	string formalDigits6 = digitToString(d);
-	cout << formalDigits6 << endl;
+	string sum = addStrings(formalDigits,testingAddition); // outputs 150.72
+	cout << sum << endl;
 
-	string formalDigits7 = digitToString(dd);
-	cout << formalDigits7 << endl;
+	string difference = subStrings(formalDigits,testingAddition); // outputs -140
+	cout << difference << endl;
+
+	if(compareStrings(sum,difference)) //should print not equal
+		cout << "the strings are equal" << endl;
+	else
+		cout << "the strings are not equal" << endl;
+
+	if(compareStrings(sum,sum)) //should print equal
+		cout << "the strings are equal" << endl;
+	else
+		cout << "the strings are not equal" << endl;
 }
 
 long addDigits(long val1, long val2)
 {
-	int finalvalue;
+	long finalvalue;
 	finalvalue = val1 + val2;
 	return finalvalue;
 }
 
 long subDigits(long val1, long val2)
 {
-	int finalvalue;
+	long finalvalue;
 	finalvalue = val1 - val2;
 	return finalvalue;
 }
@@ -118,12 +117,121 @@ string digitToString(long val)
 	return temp;
 }
 
-//int addSet(int size)
-//{
+string addDecimalPosition(string s, int i)
+{
+	int flag = 0;
+	for(int j = 0; j < s.size(); ++j)
+	{
+		if(s[j] == '.')
+			flag = 1;
+	}
 
-//}
+	string temp;
+	for(int m = 0; m < s.size(); ++m)
+	{
+		if(s[m] == ',')
+			continue;
+		temp += s[m];
+	}
 
-//int subSet(int size)
-//{
+	if(flag == 1 || (i > temp.size()))
+	{
+		return s;
+	}
+	else
+	{
+		string temp2;
+		string temp3;
+		for(int k = 0; k < temp.size(); ++k)
+		{
+			if(k == i)
+			{
+				for(int n = k; n < temp.size(); ++n)
+				{
+					temp3 +=  temp[n];
+				}
+				break;
+			}
+			else
+			{
+				temp2 += temp[k];
+			}
+		}
 
-//}
+		if(temp2.size() != 0)
+		{
+			long int holder = stol(temp2);
+			temp2 = digitToString(holder);
+		}
+		temp = temp2 + '.' + temp3;
+		return temp;
+	}
+}
+
+string addStrings(string s1, string s2)
+{
+	string temp;
+	string temp2;
+
+	for(int i = 0; i < s1.size(); ++i)
+	{
+		if(s1[i] == ',')
+			continue;
+		temp += s1[i];
+	}
+
+	for(int i = 0; i < s2.size(); ++i)
+	{
+		if(s2[i] == ',')
+			continue;
+		temp2 += s2[i];
+	}
+
+	cout << temp << endl;
+	cout << temp2 << endl;
+
+	float value = stof(temp);
+	float value2 = stof(temp2);
+
+	float sum = value + value2;
+	string finalsum = to_string(sum);
+	return finalsum;
+}
+
+string subStrings(string s1, string s2)
+{
+	string temp;
+	string temp2;
+
+	for(int i = 0; i < s1.size(); ++i)
+	{
+		if(s1[i] == ',')
+			continue;
+		temp += s1[i];
+	}
+
+	for(int i = 0; i < s2.size(); ++i)
+	{
+		if(s2[i] == ',')
+			continue;
+		temp2 += s2[i];
+	}
+
+	cout << temp << endl;
+	cout << temp2 << endl;
+
+	float value = stof(temp);
+	float value2 = stof(temp2);
+
+	float sum = value - value2;
+	string finalsum = to_string(sum);
+	return finalsum;
+}
+
+bool compareStrings(string s1, string s2)
+{
+	if(s1 == s2)
+		return true;
+	else
+		return false;
+}
